@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f83f9dc0-53c6-42d6-bdb6-121862c918b0"
+      }
+    },
+    "owner": "wongil"
   }
 }
