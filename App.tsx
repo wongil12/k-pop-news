@@ -5,6 +5,7 @@ import Home from '@@pages/Home';
 import { Provider } from 'react-redux';
 import { store } from '@@store/index';
 import { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,10 @@ export default function App() {
       setIsLoadFont(true);
     })();
   });
+
+  if (isLoadFont) {
+    <Text>Loading...</Text>;
+  }
 
   return (
     <Provider store={store}>
