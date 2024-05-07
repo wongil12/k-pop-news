@@ -2,7 +2,7 @@ import { Text, TextProps } from 'react-native';
 import styled from 'styled-components';
 
 const StyledHeaderMediumText = styled(Text)`
-  font-family: 'Bold';
+  font-family: 'PickAllBold';
   font-size: 24px;
   line-height: 30px;
 `;

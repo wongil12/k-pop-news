@@ -2,7 +2,7 @@ import { Text, TextProps } from 'react-native';
 import styled from 'styled-components';
 
 const StyledHeaderSmallText = styled(Text)`
-  font-family: 'Bold';
+  font-family: 'PickAllBold';
   font-size: 20px;
   line-height: 26px;
 `;
