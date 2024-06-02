@@ -8,8 +8,20 @@ function Page() {
   return (
     // <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} />
+      <Stack.Navigator
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: '#fff',
+          },
+        }}
+      >
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     // </Provider>

@@ -1,30 +1,17 @@
-import {
-  BodyLargeText,
-  BodyMediumText,
-  BodySmallText,
-  BodySmallerText,
-  HeaderLargeText,
-  HeaderMediumText,
-  HeaderSmallText,
-  TitleLargeText,
-  TitleMediumText,
-  TitleSmallText,
-} from '@@components/Text';
-import { SafeAreaView } from 'react-native';
+import { Flex } from '@@components/FlexView';
+import { HeaderLargeText } from '@@components/Text';
+import { IMAGES } from '@@constants/assets';
+import { Image, SafeAreaView, View } from 'react-native';
 
 function Home() {
   return (
     <SafeAreaView>
-      <HeaderLargeText>Header Large Text</HeaderLargeText>
-      <HeaderMediumText>Header Medium Text</HeaderMediumText>
-      <HeaderSmallText>Header Small Text</HeaderSmallText>
-      <TitleLargeText>Title Large Text</TitleLargeText>
-      <TitleMediumText>Title Medium Text</TitleMediumText>
-      <TitleSmallText>Title Small Text</TitleSmallText>
-      <BodyLargeText>Body Large Text</BodyLargeText>
-      <BodyMediumText>Body Medium Text</BodyMediumText>
-      <BodySmallText>Body Small Text</BodySmallText>
-      <BodySmallerText>Body Smaller Text</BodySmallerText>
+      <Flex.Vertical>
+        <Flex.Horizontal alignItems='center' gap={52}>
+          <HeaderLargeText>It’s Time to Pickall</HeaderLargeText>
+          <Image source={IMAGES.PickleCharacter} />
+        </Flex.Horizontal>
+      </Flex.Vertical>
     </SafeAreaView>
   );
 }
