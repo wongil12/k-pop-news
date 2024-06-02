@@ -2,7 +2,7 @@ import { Text, TextProps } from 'react-native';
 import styled from 'styled-components';
 
 const StyledTitleLargeText = styled(Text)`
-  font-family: 'PickAllBold';
+  font-family: 'PickAllAsapBold';
   font-size: 18px;
   line-height: 24px;
 `;

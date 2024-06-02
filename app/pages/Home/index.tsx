@@ -2,7 +2,7 @@ import {
   BodyLargeText,
   BodyMediumText,
   BodySmallText,
-  BodySmallarText,
+  BodySmallerText,
   HeaderLargeText,
   HeaderMediumText,
   HeaderSmallText,
@@ -24,7 +24,7 @@ function Home() {
       <BodyLargeText>Body Large Text</BodyLargeText>
       <BodyMediumText>Body Medium Text</BodyMediumText>
       <BodySmallText>Body Small Text</BodySmallText>
-      <BodySmallarText>Body Smallar Text</BodySmallarText>
+      <BodySmallerText>Body Smaller Text</BodySmallerText>
     </SafeAreaView>
   );
 }

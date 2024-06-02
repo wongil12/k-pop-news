@@ -7,4 +7,4 @@ export * from '@@components/Text/TitleSmallText';
 export * from '@@components/Text/BodyLargeText';
 export * from '@@components/Text/BodyMediumText';
 export * from '@@components/Text/BodySmallText';
-export * from '@@components/Text/BodySmallarText';
+export * from '@@components/Text/BodySmallerText';
