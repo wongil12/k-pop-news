@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import styled from 'styled-components';
 import { FlexViewProps } from '@@components/FlexView/types';
+import { sizeValueGenerator } from '@@utils/style';
 
 export const StyledFlexView = styled(View)<FlexViewProps & { flexDirection: 'column' | 'row' }>`
   display: flex;
@@ -8,5 +9,5 @@ export const StyledFlexView = styled(View)<FlexViewProps & { flexDirection: 'col
   ${({ alignItems }) => (alignItems ? `align-items: ${alignItems};` : '')}
   ${({ justifyContent }) => (justifyContent ? `justify-content: ${justifyContent};` : '')}
   ${({ alignSelf }) => (alignSelf ? `align-self: ${alignSelf};` : '')}
-  ${({ gap }) => (gap ? `gap: ${gap};` : '')}
+  ${({ gap }) => (gap ? `gap: ${sizeValueGenerator(gap)};` : '')}
 `;

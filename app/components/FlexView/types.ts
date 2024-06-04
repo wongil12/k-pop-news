@@ -5,7 +5,7 @@ interface AdditionalFlexViewProps {
   alignItems?: FlexAlignType;
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   alignSelf?: 'auto' | FlexAlignType;
-  gap?: number;
+  gap?: number | string;
 }
 
 export type FlexViewProps = ViewProps & AdditionalFlexViewProps;

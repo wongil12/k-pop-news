@@ -1,19 +1,19 @@
 import { ViewProps as RNViewProps } from 'react-native';
 
 export interface AdditionalViewProps {
-  paddingHorizontal?: number;
-  paddingVertical?: number;
-  paddingTop?: number;
-  paddingRight?: number;
-  paddingBottom?: number;
-  paddingLeft?: number;
+  paddingHorizontal?: number | string;
+  paddingVertical?: number | string;
+  paddingTop?: number | string;
+  paddingRight?: number | string;
+  paddingBottom?: number | string;
+  paddingLeft?: number | string;
 
-  marginHorizontal?: number;
-  marginVertical?: number;
-  marginTop?: number;
-  marginRight?: number;
-  marginBottom?: number;
-  marginLeft?: number;
+  marginHorizontal?: number | string;
+  marginVertical?: number | string;
+  marginTop?: number | string;
+  marginRight?: number | string;
+  marginBottom?: number | string;
+  marginLeft?: number | string;
 }
 
 export type ViewProps = AdditionalViewProps & RNViewProps;

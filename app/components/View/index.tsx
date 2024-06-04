@@ -1,21 +1,22 @@
 import { View as RNView } from 'react-native';
 import styled from 'styled-components';
 import { AdditionalViewProps, ViewProps } from '@@components/View/types';
+import { sizeValueGenerator } from '@@utils/style';
 
 const StyledView = styled(RNView)<AdditionalViewProps>`
-  ${({ paddingHorizontal }) => (paddingHorizontal ? `padding: 0 ${paddingHorizontal};` : '')}
+  ${({ paddingHorizontal }) => (paddingHorizontal ? `padding: 0 ${sizeValueGenerator(paddingHorizontal)};` : '')}
   ${({ paddingVertical }) => (paddingVertical ? `padding: ${paddingVertical} 0;` : '')}
-  ${({ paddingTop }) => (paddingTop ? `padding-top: ${paddingTop};` : '')}
-  ${({ paddingRight }) => (paddingRight ? `padding-right: ${paddingRight};` : '')}
-  ${({ paddingBottom }) => (paddingBottom ? `padding-bottom: ${paddingBottom};` : '')}
-  ${({ paddingLeft }) => (paddingLeft ? `padding-left: ${paddingLeft};` : '')}
+  ${({ paddingTop }) => (paddingTop ? `padding-top: ${sizeValueGenerator(paddingTop)};` : '')}
+  ${({ paddingRight }) => (paddingRight ? `padding-right: ${sizeValueGenerator(paddingRight)};` : '')}
+  ${({ paddingBottom }) => (paddingBottom ? `padding-bottom: ${sizeValueGenerator(paddingBottom)};` : '')}
+  ${({ paddingLeft }) => (paddingLeft ? `padding-left: ${sizeValueGenerator(paddingLeft)};` : '')}
 
-  ${({ marginVertical }) => (marginVertical ? `margin: ${marginVertical} 0;` : '')}
-  ${({ marginVertical }) => (marginVertical ? `margin: ${marginVertical} 0;` : '')}
-  ${({ marginTop }) => (marginTop ? `margin-top: ${marginTop};` : '')}
-  ${({ marginRight }) => (marginRight ? `margin-right: ${marginRight};` : '')}
-  ${({ marginBottom }) => (marginBottom ? `margin-bottom: ${marginBottom};` : '')}
-  ${({ marginLeft }) => (marginLeft ? `margin-left: ${marginLeft};` : '')}
+  ${({ marginHorizontal }) => (marginHorizontal ? `margin: 0 ${sizeValueGenerator(marginHorizontal)};` : '')}
+  ${({ marginVertical }) => (marginVertical ? `margin: ${sizeValueGenerator(marginVertical)} 0;` : '')}
+  ${({ marginTop }) => (marginTop ? `margin-top: ${sizeValueGenerator(marginTop)};` : '')}
+  ${({ marginRight }) => (marginRight ? `margin-right: ${sizeValueGenerator(marginRight)};` : '')}
+  ${({ marginBottom }) => (marginBottom ? `margin-bottom: ${sizeValueGenerator(marginBottom)};` : '')}
+  ${({ marginLeft }) => (marginLeft ? `margin-left: ${sizeValueGenerator(marginLeft)};` : '')}
 `;
 
 export function View(props: ViewProps) {
