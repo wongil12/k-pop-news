@@ -13,7 +13,7 @@ function Home() {
           <Image source={ASSETS.IMAGES.PickleCharacter} />
         </Flex.Horizontal>
         <Flex.Vertical>
-          <TextInput value='asdfadsf' />
+          <TextInput placeholder='Hi everyone nice to meet you.' />
         </Flex.Vertical>
       </Flex.Vertical>
     </SafeAreaView>
