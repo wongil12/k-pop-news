@@ -1,5 +1,7 @@
-import PickleCharacter from '../../assets/images/pickel_chracter.png';
+import { COLORS } from '@@constants/Colors';
+import { IMAGES } from '@@constants/images';
 
-export const IMAGES = {
-  PickleCharacter,
+export const ASSETS = {
+  COLORS,
+  IMAGES,
 };

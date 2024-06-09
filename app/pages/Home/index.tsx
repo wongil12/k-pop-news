@@ -1,6 +1,7 @@
 import { Flex } from '@@components/FlexView';
+import { TextInput } from '@@components/Input';
 import { HeaderLargeText } from '@@components/Text';
-import { IMAGES } from '@@constants/assets';
+import { ASSETS } from '@@constants/assets';
 import { Image, SafeAreaView } from 'react-native';
 
 function Home() {
@@ -9,8 +10,11 @@ function Home() {
       <Flex.Vertical>
         <Flex.Horizontal alignItems='flex-start' justifyContent='center' gap={52} paddingLeft={30} paddingRight={53} paddingTop={92}>
           <HeaderLargeText>It’s Time to{'\n'}Pickall</HeaderLargeText>
-          <Image source={IMAGES.PickleCharacter} />
+          <Image source={ASSETS.IMAGES.PickleCharacter} />
         </Flex.Horizontal>
+        <Flex.Vertical>
+          <TextInput value='asdfadsf' />
+        </Flex.Vertical>
       </Flex.Vertical>
     </SafeAreaView>
   );
