@@ -1,4 +1,5 @@
-import { Text, TextProps } from 'react-native';
+import { Text } from '@@components/Text/Text';
+import { TextProps } from '@@components/Text/types';
 import styled from 'styled-components';
 
 const StyledBodySmallerText = styled(Text)`
