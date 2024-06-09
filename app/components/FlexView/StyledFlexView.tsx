@@ -6,6 +6,7 @@ import { View } from '@@components/View';
 export const StyledFlexView = styled(View)<FlexViewProps & { flexDirection: 'column' | 'row' }>`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
+  ${({ full }) => full && 'height: 100%;'}
   ${({ alignItems }) => (alignItems ? `align-items: ${alignItems};` : '')}
   ${({ justifyContent }) => (justifyContent ? `justify-content: ${justifyContent};` : '')}
   ${({ alignSelf }) => (alignSelf ? `align-self: ${alignSelf};` : '')}

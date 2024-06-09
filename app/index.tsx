@@ -1,4 +1,4 @@
-import Home from '@@pages/Home';
+import Main from '@@pages/Main';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -16,8 +16,8 @@ function Page() {
         }}
       >
         <Stack.Screen
-          name='Home'
-          component={Home}
+          name='Main'
+          component={Main}
           options={{
             headerShown: false,
           }}
