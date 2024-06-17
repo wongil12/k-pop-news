@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import { NativeSyntheticEvent, TextInput as RNTextInput, TextInputFocusEventData } from 'react-native';
 import styled from 'styled-components';
 import { TextInputProps } from '@@components/Input/types';
@@ -18,7 +18,7 @@ const StyledTextInput = styled(RNTextInput)<{ isFocus: boolean; hasValue: boolea
   letter-spacing: -0.2px;
 `;
 
-export function TextInput({ onBlur, onFocus, value, ...props }: TextInputProps) {
+export const TextInput = forwardRef(({ onBlur, onFocus, value, ...props }: TextInputProps, ref) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -34,6 +34,7 @@ export function TextInput({ onBlur, onFocus, value, ...props }: TextInputProps) 
   return (
     <StyledTextInput
       {...props}
+      ref={ref as ForwardedRef<RNTextInput>}
       placeholderTextColor={ASSETS.COLORS.Neutural400}
       isFocus={isFocus}
       hasValue={!!value?.length}
@@ -41,4 +42,4 @@ export function TextInput({ onBlur, onFocus, value, ...props }: TextInputProps) 
       onFocus={handleFocus}
     />
   );
-}
+});
