@@ -5,9 +5,12 @@ import { TextInput } from '@@components/Input';
 import { BodyMediumText } from '@@components/Text';
 import { ASSETS } from '@@constants/assets';
 import { useKeyboard, useKeyboardWithAnimation } from '@@hooks/keyboard';
+import { useActionSubscribe } from '@@store/middlewares/actionMiddleware';
+import { checkValidLoginEmailFailure, checkValidLoginEmailRequest, checkValidLoginEmailSuccess } from '@@svc/auth-svc/login/reducer';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const ForgetTextView = styled(BodyMediumText)`
@@ -16,6 +19,8 @@ const ForgetTextView = styled(BodyMediumText)`
 `;
 
 function Login() {
+  const dispatch = useDispatch();
+
   const emailRef = useRef<RNTextInput>(null);
   const passwordRef = useRef<RNTextInput>(null);
 
@@ -28,6 +33,7 @@ function Login() {
   useEffect(() => {
     setTimeout(() => {
       emailRef.current?.focus();
+      dispatch(checkValidLoginEmailRequest('judgevi52@gmal.com'));
     }, 500);
   }, []);
 
