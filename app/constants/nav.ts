@@ -1,4 +1,4 @@
 export const SCREENS = {
   MAIN: 'Main',
-  LOGIN: 'Login',
+  LOGIN: '로그인',
 } as const;

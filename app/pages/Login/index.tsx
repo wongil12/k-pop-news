@@ -4,11 +4,11 @@ import { Flex } from '@@components/FlexView';
 import { TextInput } from '@@components/Input';
 import { BodyMediumText } from '@@components/Text';
 import { ASSETS } from '@@constants/assets';
-import { useKeyboard, useKeyboardWithAnimation } from '@@hooks/keyboard';
+import { useKeyboardWithAnimation } from '@@hooks/keyboard';
 import { useActionSubscribe } from '@@store/middlewares/actionMiddleware';
 import { checkValidLoginEmailFailure, checkValidLoginEmailRequest, checkValidLoginEmailSuccess } from '@@svc/auth-svc/login/reducer';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
+import { Animated, GestureResponderEvent, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -29,29 +29,52 @@ function Login() {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState<string | null>(null);
+
+  const handlePressNext = () => {
+    dispatch(checkValidLoginEmailRequest(email));
+  };
+
+  useActionSubscribe({
+    type: checkValidLoginEmailSuccess.type,
+    callback: () => {
+      setIsValidEmail(true);
+    },
+  });
+
+  useActionSubscribe({
+    type: checkValidLoginEmailFailure.type,
+    callback: ({ payload }: ReturnType<typeof checkValidLoginEmailFailure>) => {
+      setEmailErrorMessage(payload || null);
+    },
+  });
 
   useEffect(() => {
-    setTimeout(() => {
-      emailRef.current?.focus();
-      dispatch(checkValidLoginEmailRequest('judgevi52@gmal.com'));
-    }, 500);
+    emailRef.current?.focus();
   }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Flex.Vertical full paddingHorizontal={30} paddingTop={90}>
-        <Flex.Vertical style={{ flexGrow: 1 }} gap={24}>
-          <Flex.Vertical gap={20}>
-            <TextInput ref={emailRef} value={email} onChangeText={setEmail} placeholder='이메일을 입력하세요' />
-            {/* <ForgetTextView>이메일을 잊었나요?</ForgetTextView> */}
-          </Flex.Vertical>
-          <Flex.Vertical gap={20}>
-            <TextInput secureTextEntry ref={passwordRef} value={password} onChangeText={setPassword} placeholder='비밀번호를 입력하세요' />
-            <ForgetTextView>비밀번호를 잊었나요?</ForgetTextView>
+      <Flex.Vertical full paddingHorizontal={30}>
+        <Flex.Vertical style={{ flexGrow: 1 }} justifyContent='center'>
+          <Flex.Vertical gap={24}>
+            <Flex.Vertical gap={20}>
+              <TextInput ref={emailRef} value={email} onChangeText={setEmail} placeholder='이메일을 입력하세요' readOnly />
+              {!isValidEmail && <ForgetTextView>이메일을 잊었나요?</ForgetTextView>}
+            </Flex.Vertical>
+            {isValidEmail && (
+              <Flex.Vertical gap={20}>
+                <TextInput secureTextEntry ref={passwordRef} value={password} onChangeText={setPassword} placeholder='비밀번호를 입력하세요' />
+                <ForgetTextView>비밀번호를 잊었나요?</ForgetTextView>
+              </Flex.Vertical>
+            )}
           </Flex.Vertical>
         </Flex.Vertical>
         <Animated.View style={{ marginBottom: animatedKeyboardHeight }}>
-          <Button.Medium variant={BUTTON_VARIANT.SECONDARY}>다음</Button.Medium>
+          <Button.Medium variant={BUTTON_VARIANT.SECONDARY} onPress={handlePressNext}>
+            다음
+          </Button.Medium>
         </Animated.View>
       </Flex.Vertical>
     </TouchableWithoutFeedback>
