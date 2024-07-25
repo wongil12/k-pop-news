@@ -10,6 +10,10 @@ export const checkValidLoginEmailRequest = createAction<string>(`${PREFIX}/check
 export const checkValidLoginEmailSuccess = createAction(`${PREFIX}/checkValidLoginEmailSuccess`);
 export const checkValidLoginEmailFailure = createAction<string>(`${PREFIX}/checkValidLoginEmailFailure`);
 
+export const loginRequest = createAction<{ email: string; password: string }>(`${PREFIX}/loginRequest`);
+export const loginSuccess = createAction<string>(`${PREFIX}/loginSuccess`);
+export const loginFailure = createAction<string>(`${PREFIX}/loginFailure`);
+
 const loginSlice = createSlice({
   name: PREFIX,
   initialState,

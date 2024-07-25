@@ -6,7 +6,14 @@ import { BodyMediumText } from '@@components/Text';
 import { ASSETS } from '@@constants/assets';
 import { useKeyboardWithAnimation } from '@@hooks/keyboard';
 import { useActionSubscribe } from '@@store/middlewares/actionMiddleware';
-import { checkValidLoginEmailFailure, checkValidLoginEmailRequest, checkValidLoginEmailSuccess } from '@@svc/auth-svc/login/reducer';
+import {
+  checkValidLoginEmailFailure,
+  checkValidLoginEmailRequest,
+  checkValidLoginEmailSuccess,
+  loginFailure,
+  loginRequest,
+  loginSuccess,
+} from '@@svc/auth-svc/login/reducer';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, GestureResponderEvent, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -31,15 +38,39 @@ function Login() {
   const [password, setPassword] = useState<string>('');
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState<string | null>(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState<string | null>(null);
 
   const handlePressNext = () => {
-    dispatch(checkValidLoginEmailRequest(email));
+    if (!isValidEmail) {
+      dispatch(checkValidLoginEmailRequest(email));
+    } else {
+      dispatch(
+        loginRequest({
+          email,
+          password,
+        })
+      );
+    }
+  };
+
+  const handlePressEmailInput = () => {
+    if (!isValidEmail) return;
+    setIsValidEmail(false);
+    setEmailErrorMessage(null);
+    setPassword('');
+    setTimeout(() => {
+      emailRef.current?.focus();
+    }, 500);
   };
 
   useActionSubscribe({
     type: checkValidLoginEmailSuccess.type,
     callback: () => {
       setIsValidEmail(true);
+      setEmailErrorMessage(null);
+      setTimeout(() => {
+        passwordRef.current?.focus();
+      }, 500);
     },
   });
 
@@ -47,6 +78,20 @@ function Login() {
     type: checkValidLoginEmailFailure.type,
     callback: ({ payload }: ReturnType<typeof checkValidLoginEmailFailure>) => {
       setEmailErrorMessage(payload || null);
+    },
+  });
+
+  useActionSubscribe({
+    type: loginSuccess.type,
+    callback: () => {
+      // 로그인 성공 후 화면 전환 로직
+    },
+  });
+
+  useActionSubscribe({
+    type: loginFailure.type,
+    callback: ({ payload }: ReturnType<typeof loginFailure>) => {
+      setPasswordErrorMessage(payload || null);
     },
   });
 
@@ -67,10 +112,11 @@ function Login() {
                 value={email}
                 onChangeText={setEmail}
                 placeholder='이메일을 입력하세요'
-                errorMessage='asdfasdf'
+                errorMessage={emailErrorMessage}
                 readOnly={isValidEmail}
+                onPress={handlePressEmailInput}
               />
-              {!isValidEmail && <ForgetTextView>이메일을 잊었나요?</ForgetTextView>}
+              {!isValidEmail && !emailErrorMessage && <ForgetTextView>이메일을 잊었나요?</ForgetTextView>}
             </Flex.Vertical>
             {isValidEmail && (
               <Flex.Vertical gap={20}>
@@ -79,8 +125,8 @@ function Login() {
                   ref={passwordRef}
                   value={password}
                   onChangeText={setPassword}
-                  errorMessage={emailErrorMessage}
                   placeholder='비밀번호를 입력하세요'
+                  errorMessage={passwordErrorMessage}
                 />
                 <ForgetTextView>비밀번호를 잊었나요?</ForgetTextView>
               </Flex.Vertical>

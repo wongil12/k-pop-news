@@ -8,21 +8,24 @@ import ErrorMessage from './ErrorMessage';
 
 const StyledTextInputBox = styled(Flex.Vertical)``;
 
+const getBorderColor = ({ isFocus, hasValue, readOnly }: { isFocus: boolean; hasValue: boolean; readOnly?: boolean }) =>
+  !readOnly && (isFocus || hasValue) ? ASSETS.COLORS.Neutural800 : ASSETS.COLORS.Neutural400;
+
 const StyledTextInput = styled(RNTextInput)<{ isFocus: boolean; hasValue: boolean }>`
   background: ${ASSETS.COLORS.Neutural050};
-  border: 1px solid ${({ isFocus, hasValue }) => (isFocus || hasValue ? ASSETS.COLORS.Neutural800 : ASSETS.COLORS.Neutural400)};
+  border: 1px solid ${({ isFocus, hasValue, readOnly }) => getBorderColor({ isFocus, hasValue, readOnly })};
   min-height: 42px;
   border-radius: 8px;
   padding: 0 16px;
 
-  color: ${ASSETS.COLORS.Neutural900};
+  color: ${({ readOnly }) => (readOnly ? ASSETS.COLORS.Neutural600 : ASSETS.COLORS.Neutural900)};
   font-family: 'PickAllPretendardRegular';
   font-size: 16px;
   line-height: 22px;
   letter-spacing: -0.2px;
 `;
 
-export const TextInput = forwardRef(({ onBlur, onFocus, value, errorMessage, errorWithIcon = true, ...props }: TextInputProps, ref) => {
+export const TextInput = forwardRef(({ onBlur, onFocus, value, errorMessage, errorWithIcon = true, readOnly, ...props }: TextInputProps, ref) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -39,6 +42,7 @@ export const TextInput = forwardRef(({ onBlur, onFocus, value, errorMessage, err
     <StyledTextInputBox gap={12}>
       <StyledTextInput
         {...props}
+        readOnly={readOnly}
         ref={ref as ForwardedRef<RNTextInput>}
         placeholderTextColor={ASSETS.COLORS.Neutural400}
         isFocus={isFocus}
