@@ -51,7 +51,9 @@ function Login() {
   });
 
   useEffect(() => {
-    emailRef.current?.focus();
+    setTimeout(() => {
+      emailRef.current?.focus();
+    }, 500);
   }, []);
 
   return (
@@ -60,12 +62,26 @@ function Login() {
         <Flex.Vertical style={{ flexGrow: 1 }} justifyContent='center'>
           <Flex.Vertical gap={24}>
             <Flex.Vertical gap={20}>
-              <TextInput ref={emailRef} value={email} onChangeText={setEmail} placeholder='이메일을 입력하세요' readOnly />
+              <TextInput
+                ref={emailRef}
+                value={email}
+                onChangeText={setEmail}
+                placeholder='이메일을 입력하세요'
+                errorMessage='asdfasdf'
+                readOnly={isValidEmail}
+              />
               {!isValidEmail && <ForgetTextView>이메일을 잊었나요?</ForgetTextView>}
             </Flex.Vertical>
             {isValidEmail && (
               <Flex.Vertical gap={20}>
-                <TextInput secureTextEntry ref={passwordRef} value={password} onChangeText={setPassword} placeholder='비밀번호를 입력하세요' />
+                <TextInput
+                  secureTextEntry
+                  ref={passwordRef}
+                  value={password}
+                  onChangeText={setPassword}
+                  errorMessage={emailErrorMessage}
+                  placeholder='비밀번호를 입력하세요'
+                />
                 <ForgetTextView>비밀번호를 잊었나요?</ForgetTextView>
               </Flex.Vertical>
             )}

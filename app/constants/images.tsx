@@ -4,6 +4,7 @@ import IconApple from '../../assets/images/icons/ic-apple.png';
 import IconGoogle from '../../assets/images/icons/ic-google.png';
 import IconKakao from '../../assets/images/icons/ic-kakao.png';
 import IconNaver from '../../assets/images/icons/ic-naver.png';
+import IconRottenPickel from '../../assets/images/icons/ic-rotten-pickel.png';
 
 export const IMAGES = {
   PickleCharacter,
@@ -12,4 +13,5 @@ export const IMAGES = {
   IconGoogle,
   IconKakao,
   IconNaver,
+  IconRottenPickel,
 };

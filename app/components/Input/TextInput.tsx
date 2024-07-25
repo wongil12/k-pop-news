@@ -3,6 +3,10 @@ import { NativeSyntheticEvent, TextInput as RNTextInput, TextInputFocusEventData
 import styled from 'styled-components';
 import { TextInputProps } from '@@components/Input/types';
 import { ASSETS } from '@@constants/assets';
+import { Flex } from '@@components/FlexView';
+import ErrorMessage from './ErrorMessage';
+
+const StyledTextInputBox = styled(Flex.Vertical)``;
 
 const StyledTextInput = styled(RNTextInput)<{ isFocus: boolean; hasValue: boolean }>`
   background: ${ASSETS.COLORS.Neutural050};
@@ -18,7 +22,7 @@ const StyledTextInput = styled(RNTextInput)<{ isFocus: boolean; hasValue: boolea
   letter-spacing: -0.2px;
 `;
 
-export const TextInput = forwardRef(({ onBlur, onFocus, value, ...props }: TextInputProps, ref) => {
+export const TextInput = forwardRef(({ onBlur, onFocus, value, errorMessage, errorWithIcon = true, ...props }: TextInputProps, ref) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -32,14 +36,17 @@ export const TextInput = forwardRef(({ onBlur, onFocus, value, ...props }: TextI
   };
 
   return (
-    <StyledTextInput
-      {...props}
-      ref={ref as ForwardedRef<RNTextInput>}
-      placeholderTextColor={ASSETS.COLORS.Neutural400}
-      isFocus={isFocus}
-      hasValue={!!value?.length}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-    />
+    <StyledTextInputBox gap={12}>
+      <StyledTextInput
+        {...props}
+        ref={ref as ForwardedRef<RNTextInput>}
+        placeholderTextColor={ASSETS.COLORS.Neutural400}
+        isFocus={isFocus}
+        hasValue={!!value?.length}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+      />
+      {errorMessage && <ErrorMessage withIcon={errorWithIcon}>{errorMessage}</ErrorMessage>}
+    </StyledTextInputBox>
   );
 });
