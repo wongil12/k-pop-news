@@ -1,3 +1,4 @@
+import HeaderBackButton from '@@components/HeaderBackButton';
 import { SCREENS } from '@@constants/nav';
 import Login from '@@pages/Login';
 import Main from '@@pages/Main';
@@ -27,7 +28,14 @@ function Page() {
               headerShown: false,
             }}
           />
-          <Stack.Screen name={SCREENS.LOGIN} component={Login} />
+          <Stack.Screen
+            name={SCREENS.LOGIN}
+            component={Login}
+            options={{
+              headerTitle: '로그인',
+              headerLeft: (props) => <HeaderBackButton {...props} />,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
