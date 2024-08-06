@@ -4,7 +4,9 @@ import { AuthServiceState } from '@@svc/auth-svc/types';
 import loginReducer from '@@svc/auth-svc/login/reducer';
 
 const initialState: AuthServiceState = {
-  login: {},
+  login: {
+    token: null,
+  },
 };
 
 const authSlice = createSlice({

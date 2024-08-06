@@ -8,6 +8,8 @@ import { Animated, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import { useLoginFlow } from './hooks';
+import { useSelector } from 'react-redux';
+import { AppState } from '@@store/types';
 
 const ForgetTextView = styled(BodyMediumText)`
   color: ${ASSETS.COLORS.Neutural600};
@@ -17,6 +19,11 @@ const ForgetTextView = styled(BodyMediumText)`
 function Login() {
   const { bottom } = useSafeAreaInsets();
   const animatedKeyboardHeight = useKeyboardWithAnimation({ additionalValue: bottom, duration: 200, useNativeDriver: false });
+
+  const a = useSelector((state: AppState) => {
+    console.log('asdfasdf');
+    console.log(state);
+  });
 
   const { emailInputProps, passwordInputProps, buttonProps, showForgotEmail, isValidEmail } = useLoginFlow();
 

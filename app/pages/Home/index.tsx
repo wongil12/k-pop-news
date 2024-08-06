@@ -4,7 +4,7 @@ import { BodyLargeText } from '@@components/Text';
 function Home() {
   return (
     <Flex.Vertical>
-      <BodyLargeText>asdf</BodyLargeText>
+      <BodyLargeText>zxcvxzvzcv</BodyLargeText>
     </Flex.Vertical>
   );
 }
