@@ -1,5 +1,6 @@
 import HeaderBackButton from '@@components/HeaderBackButton';
 import { SCREENS } from '@@constants/nav';
+import Home from '@@pages/Home';
 import Login from '@@pages/Login';
 import Main from '@@pages/Main';
 import { store } from '@@store';
@@ -34,6 +35,21 @@ function Page() {
             options={{
               headerTitle: '로그인',
               headerLeft: (props) => <HeaderBackButton {...props} />,
+            }}
+          />
+        </Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: '#fff',
+            },
+          }}
+        >
+          <Stack.Screen
+            name={SCREENS.HOME}
+            component={Home}
+            options={{
+              headerShown: false,
             }}
           />
         </Stack.Navigator>
