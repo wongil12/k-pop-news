@@ -6,6 +6,7 @@ import {
   loginSuccess,
   loginFailure,
 } from '@@svc/auth-svc/login/reducer';
+import { setItem } from '@@utils/storage';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 const TEST_EMAIL = ['asdf@naver.com', 'asdf@asdf.com', 'asdf@asdf.asdf', 'a'];
@@ -74,7 +75,16 @@ function* checkValidLoginEmail({ payload }: ReturnType<typeof checkValidLoginEma
 function* login({ payload: { email, password } }: ReturnType<typeof loginRequest>) {
   try {
     const response: LoginResponse = yield call(dummyLogin, { email, password });
-    const action = response.ok ? loginSuccess(response.token) : loginFailure('비밀번호 틀림ㅋ');
+
+    let action = response.ok ? loginSuccess(response.token) : loginFailure('비밀번호 틀림ㅋ');
+
+    if (response.ok) {
+      const isSuccess: boolean = yield call(setItem, 'token', response.token);
+      if (!isSuccess) {
+        action = loginFailure('모종의 이유로 로그인 실패ㅜㅜ');
+      }
+    }
+
     yield put(action);
   } catch (e) {
     yield put(loginFailure((e as Error).message));

@@ -14,6 +14,7 @@ import {
   loginRequest,
   loginSuccess,
 } from '@@svc/auth-svc/login/reducer';
+import { getItem } from '@@utils/storage';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, GestureResponderEvent, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

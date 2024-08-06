@@ -1,1 +1,3 @@
-export interface LoginState {}
+export interface LoginState {
+  token: string | null;
+}
