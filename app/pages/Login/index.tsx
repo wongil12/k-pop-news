@@ -20,11 +20,6 @@ function Login() {
   const { bottom } = useSafeAreaInsets();
   const animatedKeyboardHeight = useKeyboardWithAnimation({ additionalValue: bottom, duration: 200, useNativeDriver: false });
 
-  const a = useSelector((state: AppState) => {
-    console.log('asdfasdf');
-    console.log(state);
-  });
-
   const { emailInputProps, passwordInputProps, buttonProps, showForgotEmail, isValidEmail } = useLoginFlow();
 
   return (
