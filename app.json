@@ -10,9 +10,12 @@
       "image": "./assets/splash.png",
       "resizeMode": "cover"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wongil.pickalltime"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,10 +28,12 @@
     },
     "extra": {
       "eas": {
-        "projectId": "f83f9dc0-53c6-42d6-bdb6-121862c918b0"
+        "projectId": "89dbe329-2481-4c1f-ae20-e197ab4d7433"
       }
     },
     "owner": "wongil",
-    "plugins": ["expo-font"]
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
