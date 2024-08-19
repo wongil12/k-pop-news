@@ -8,6 +8,7 @@ import IconRottenPickel from '../../assets/images/icons/ic-rotten-pickel.png';
 import IconArrowLeft from '../../assets/images/icons/ic-arrow-left.png';
 import IconBars from '../../assets/images/icons/ic-bars.png';
 import IconSearch from '../../assets/images/icons/ic-search.png';
+import IconCheck from '../../assets/images/icons/ic-check.png';
 
 export const IMAGES = {
   PickleCharacter,
@@ -20,4 +21,5 @@ export const IMAGES = {
   IconArrowLeft,
   IconBars,
   IconSearch,
+  IconCheck,
 };
