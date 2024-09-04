@@ -16,7 +16,9 @@ function CalanderItem({ scheduleList, date, ...props }: CalanderItemProps) {
         <BodySmallText>{String(date).padStart(2, '0')}</BodySmallText>
       </StyleDateTextView>
       <Flex.Vertical style={{ alignSelf: 'stretch' }} marginTop={4} gap={1}>
-        <CalanderLabel />
+        {scheduleList?.map((schedule, index) => (
+          <CalanderLabel key={index} schedule={schedule} />
+        ))}
       </Flex.Vertical>
     </Flex.Vertical>
   );

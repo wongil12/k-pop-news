@@ -5,7 +5,7 @@ import { CalanderProps } from '@@components/Calander/types';
 function Calander({ scheduleList, ...props }: CalanderProps) {
   return (
     <Flex.Vertical {...props}>
-      <CalanderItem />
+      <CalanderItem date={1} scheduleList={[]} />
     </Flex.Vertical>
   );
 }

@@ -11,7 +11,7 @@ function Home() {
     <Flex.Vertical paddingTop={top}>
       <Header />
       <CalanderList />
-      <Calander />
+      <Calander scheduleList={[]} />
     </Flex.Vertical>
   );
 }
