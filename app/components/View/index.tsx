@@ -17,6 +17,8 @@ const StyledView = styled(RNView)<AdditionalViewProps>`
   ${({ marginRight }) => (marginRight ? `margin-right: ${sizeValueGenerator(marginRight)};` : '')}
   ${({ marginBottom }) => (marginBottom ? `margin-bottom: ${sizeValueGenerator(marginBottom)};` : '')}
   ${({ marginLeft }) => (marginLeft ? `margin-left: ${sizeValueGenerator(marginLeft)};` : '')}
+  
+  ${({ background }) => (background ? `background: ${sizeValueGenerator(background)};` : '')}
 `;
 
 export function View(props: ViewProps) {

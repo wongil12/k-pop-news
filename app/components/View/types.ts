@@ -14,6 +14,8 @@ export interface AdditionalViewProps {
   marginRight?: number | string;
   marginBottom?: number | string;
   marginLeft?: number | string;
+
+  background?: string;
 }
 
 export type ViewProps = AdditionalViewProps & RNViewProps;
