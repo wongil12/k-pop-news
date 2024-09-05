@@ -11,5 +11,8 @@ export const StyledFlexView = styled(View)<FlexViewProps & { flexDirection: 'col
   ${({ justifyContent }) => (justifyContent ? `justify-content: ${justifyContent};` : '')}
   ${({ alignSelf }) => (alignSelf ? `align-self: ${alignSelf};` : '')}
   ${({ gap }) => (gap ? `gap: ${sizeValueGenerator(gap)};` : '')}
+  ${({ flex }) => (flex ? `flex: ${flex};` : '')}
+  ${({ flexGrow }) => (flexGrow ? `flex-grow: ${flexGrow};` : '')}
+  
   box-sizing: border-box;
 `;

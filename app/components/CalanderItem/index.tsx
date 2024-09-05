@@ -13,7 +13,7 @@ function CalanderItem({ scheduleList, date, ...props }: CalanderItemProps) {
   return (
     <Flex.Vertical alignItems='center' {...props}>
       <StyleDateTextView alignItems='center' justifyContent='center'>
-        <BodySmallText>{String(date).padStart(2, '0')}</BodySmallText>
+        <BodySmallText>{date}</BodySmallText>
       </StyleDateTextView>
       <Flex.Vertical style={{ alignSelf: 'stretch' }} marginTop={4} gap={1}>
         {scheduleList?.map((schedule, index) => (
