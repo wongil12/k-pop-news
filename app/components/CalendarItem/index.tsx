@@ -1,15 +1,15 @@
 import { Flex } from '@@components/FlexView';
 import { BodySmallText } from '@@components/Text';
-import CalanderLabel from '@@components/CalanderItem/CalanderLabel';
+import CalendarLabel from '@@components/CalendarItem/CalendarLabel';
 import styled from 'styled-components';
-import { CalanderItemProps } from '@@components/CalanderItem/types';
+import { CalendarItemProps } from '@@components/CalendarItem/types';
 
 const StyleDateTextView = styled(Flex.Horizontal)`
   width: 32px;
   height: 32px;
 `;
 
-function CalanderItem({ scheduleList, date, ...props }: CalanderItemProps) {
+function CalendarItem({ scheduleList, date, ...props }: CalendarItemProps) {
   return (
     <Flex.Vertical alignItems='center' {...props}>
       <StyleDateTextView alignItems='center' justifyContent='center'>
@@ -17,11 +17,11 @@ function CalanderItem({ scheduleList, date, ...props }: CalanderItemProps) {
       </StyleDateTextView>
       <Flex.Vertical style={{ alignSelf: 'stretch' }} marginTop={4} gap={1}>
         {scheduleList?.map((schedule, index) => (
-          <CalanderLabel key={index} schedule={schedule} />
+          <CalendarLabel key={index} schedule={schedule} />
         ))}
       </Flex.Vertical>
     </Flex.Vertical>
   );
 }
 
-export default CalanderItem;
+export default CalendarItem;

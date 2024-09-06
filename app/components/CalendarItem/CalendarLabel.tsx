@@ -2,9 +2,9 @@ import { Flex } from '@@components/FlexView';
 import { BodySmallerText } from '@@components/Text';
 import { View } from '@@components/View';
 import styled from 'styled-components';
-import { CalanderLabelProps } from '@@components/CalanderItem/types';
+import { CalendarLabelProps } from '@@components/CalendarItem/types';
 
-const StyledCalanderLabel = styled(Flex.Horizontal)`
+const StyledCalendarLabel = styled(Flex.Horizontal)`
   border-radius: 2px;
   overflow: hidden;
 `;
@@ -23,18 +23,18 @@ const StyledLabelTex = styled(BodySmallerText)`
   text-align: center;
 `;
 
-function CalanderLabel({ schedule }: CalanderLabelProps) {
+function CalendarLabel({ schedule }: CalendarLabelProps) {
   const { title, mainColor, subColor } = schedule;
   return (
-    <StyledCalanderLabel>
+    <StyledCalendarLabel>
       <StyledLabelMarker background={subColor} />
       <StyledLabelTextView background={mainColor}>
         <StyledLabelTex numberOfLines={1} ellipsizeMode='clip'>
           {title}
         </StyledLabelTex>
       </StyledLabelTextView>
-    </StyledCalanderLabel>
+    </StyledCalendarLabel>
   );
 }
 
-export default CalanderLabel;
+export default CalendarLabel;

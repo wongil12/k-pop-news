@@ -1,5 +1,5 @@
-import CalanderFilter from '@@components/CalanderFilter';
-import CalanderIcon from '@@components/CalanderIcon';
+import CalendarFilter from '@@components/CalendarFilter';
+import CalendarIcon from '@@components/CalendarIcon';
 import { Flex } from '@@components/FlexView';
 import { ASSETS } from '@@constants/assets';
 import { Image, ScrollView } from 'react-native';
@@ -27,17 +27,17 @@ const StyledScrollView = styled(ScrollView)`
   margin-top: 12px;
 `;
 
-function CalanderList() {
+function CalendarList() {
   return (
     <StyledScrollView showsHorizontalScrollIndicator={false} horizontal>
       <Flex.Horizontal gap={11} paddingHorizontal={20}>
-        <CalanderFilter image={<Image source={ASSETS.IMAGES.IconCheck} />} borderColor={ASSETS.COLORS.Neutural800} description='전체' />
+        <CalendarFilter image={<Image source={ASSETS.IMAGES.IconCheck} />} borderColor={ASSETS.COLORS.Neutural800} description='전체' />
         {DUMMY_DATA.map((data, index) => (
-          <CalanderFilter key={index} emoji={data.emoji} borderColor={data.borderColor} description={data.description} />
+          <CalendarFilter key={index} emoji={data.emoji} borderColor={data.borderColor} description={data.description} />
         ))}
       </Flex.Horizontal>
     </StyledScrollView>
   );
 }
 
-export default CalanderList;
+export default CalendarList;

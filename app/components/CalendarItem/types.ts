@@ -1,11 +1,11 @@
 import { FlexViewProps } from '@@components/FlexView/types';
 
-export interface CalanderItemProps extends FlexViewProps {
+export interface CalendarItemProps extends FlexViewProps {
   date: number;
   scheduleList?: Schedule[];
 }
 
-export interface CalanderLabelProps extends FlexViewProps {
+export interface CalendarLabelProps extends FlexViewProps {
   schedule: Schedule;
 }
 

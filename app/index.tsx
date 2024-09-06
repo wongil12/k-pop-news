@@ -14,7 +14,8 @@ import { useAppState } from '@@store/hooks';
 const Stack = createNativeStackNavigator<NavigatorCallback>();
 
 function Page() {
-  const token = useAppState((state) => state.authSvc.login.token);
+  // const token = useAppState((state) => state.authSvc.login.token);
+  const token = 'asdf';
 
   return (
     <Provider store={store}>
