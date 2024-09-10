@@ -6,49 +6,42 @@ import { add, format } from 'date-fns';
 import { BodySmallText } from '@@components/Text';
 import { View } from '@@components/View';
 import { useEffect, useRef, useState } from 'react';
+import { useCalendar } from './hooks';
 
 function Calendar({ scheduleList, ...props }: CalendarProps) {
-  const a = [1, 2, 3, 4, 5, 6];
-  // const flatRef = useRef<FlatList<number>>(null);
-  // const [data, setData] = useState<number[]>(Array.from({ length: 200 }, (_, index) => index + 1));
+  const flatRef = useRef<FlatList<Date>>(null);
+  const [targetDate, setTargetDate] = useState<Date>(new Date());
+  const dateList = useCalendar(targetDate);
 
-  // useEffect(() => {
-  //   flatRef.current?.scrollToItem({
-  //     animated: false,
-  //     item: 100,
-  //   });
-  // }, []);
-
-  // console.log(data);
-
-  // return (
-  //   <FlatList
-  //     ref={flatRef}
-  //     data={data}
-  //     renderItem={({ item }) => <BodySmallText>{item}</BodySmallText>}
-  //     showsVerticalScrollIndicator={false}
-  //     onScroll={(e) => {
-  //       if (e.nativeEvent.contentOffset.y < e.nativeEvent.contentSize.height / 4) {
-  //         const a = [...data];
-  //         setData(Array.from({ length: 100 }, (_, index) => index - 100 + 1).concat(a.slice(0, 100)));
-  //       }
-  //     }}
-  //   />
-  // );
   return (
-    <Flex.Vertical {...props}>
-      <Flex.Horizontal justifyContent='space-between'>
-        {a.map((v) => (
-          <CalendarItem flex={1} date={v} scheduleList={[]} />
-        ))}
-      </Flex.Horizontal>
-      <Flex.Horizontal justifyContent='space-between'>
-        {a.map((v) => (
-          <CalendarItem flex={1} date={v} scheduleList={[]} />
-        ))}
-      </Flex.Horizontal>
-    </Flex.Vertical>
+    <FlatList
+      horizontal
+      ref={flatRef}
+      data={dateList ?? []}
+      renderItem={({ item }) => <BodySmallText>{item.getFullYear()}</BodySmallText>}
+      showsHorizontalScrollIndicator={false}
+      onScroll={(e) => {
+        if (e.nativeEvent.contentOffset.y < e.nativeEvent.contentSize.height / 4) {
+          // const a = [...data];
+          // setData(Array.from({ length: 100 }, (_, index) => index - 100 + 1).concat(a.slice(0, 100)));
+        }
+      }}
+    />
   );
+  // return (
+  //   <Flex.Vertical {...props}>
+  //     <Flex.Horizontal justifyContent='space-between'>
+  //       {a.map((v) => (
+  //         <CalendarItem flex={1} date={v} scheduleList={[]} />
+  //       ))}
+  //     </Flex.Horizontal>
+  //     <Flex.Horizontal justifyContent='space-between'>
+  //       {a.map((v) => (
+  //         <CalendarItem flex={1} date={v} scheduleList={[]} />
+  //       ))}
+  //     </Flex.Horizontal>
+  //   </Flex.Vertical>
+  // );
 }
 
 export default Calendar;
