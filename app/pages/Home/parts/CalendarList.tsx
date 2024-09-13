@@ -29,14 +29,16 @@ const StyledScrollView = styled(ScrollView)`
 
 function CalendarList() {
   return (
-    <StyledScrollView showsHorizontalScrollIndicator={false} horizontal>
-      <Flex.Horizontal gap={11} paddingHorizontal={20}>
-        <CalendarFilter image={<Image source={ASSETS.IMAGES.IconCheck} />} borderColor={ASSETS.COLORS.Neutural800} description='전체' />
-        {DUMMY_DATA.map((data, index) => (
-          <CalendarFilter key={index} emoji={data.emoji} borderColor={data.borderColor} description={data.description} />
-        ))}
-      </Flex.Horizontal>
-    </StyledScrollView>
+    <Flex.Horizontal>
+      <StyledScrollView showsHorizontalScrollIndicator={false}>
+        <Flex.Horizontal gap={11} paddingHorizontal={20}>
+          <CalendarFilter image={<Image source={ASSETS.IMAGES.IconCheck} />} borderColor={ASSETS.COLORS.Neutural800} description='전체' />
+          {DUMMY_DATA.map((data, index) => (
+            <CalendarFilter key={index} emoji={data.emoji} borderColor={data.borderColor} description={data.description} />
+          ))}
+        </Flex.Horizontal>
+      </StyledScrollView>
+    </Flex.Horizontal>
   );
 }
 

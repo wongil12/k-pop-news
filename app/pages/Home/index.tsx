@@ -8,10 +8,10 @@ function Home() {
   const { top } = useSafeAreaInsets();
 
   return (
-    <Flex.Vertical paddingTop={top}>
+    <Flex.Vertical full paddingTop={top}>
       <Header />
       <CalendarList />
-      <Calendar scheduleList={[]} />
+      <Calendar scheduleList={[]} flexGrow={1} />
     </Flex.Vertical>
   );
 }
