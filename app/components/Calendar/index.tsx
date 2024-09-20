@@ -2,7 +2,7 @@ import CalendarItem from '@@components/CalendarItem';
 import { Flex } from '@@components/FlexView';
 import { CalendarProps } from '@@components/Calendar/types';
 import { Dimensions, FlatList } from 'react-native';
-import { add, format } from 'date-fns';
+import { add, format, startOfDay, startOfMonth } from 'date-fns';
 import { BodySmallText } from '@@components/Text';
 import { View } from '@@components/View';
 import { useEffect, useRef, useState } from 'react';
@@ -16,13 +16,14 @@ function Calendar({ scheduleList, ...props }: CalendarProps) {
 
   return (
     <Flex.Horizontal {...props} alignItems='stretch'>
-      <FlatList
+      <MonthOfCalendar date={startOfMonth(new Date())} />
+      {/* <FlatList
         horizontal
         ref={flatRef}
         data={dateList ?? []}
         renderItem={({ item }) => <MonthOfCalendar date={item} />}
         // showsHorizontalScrollIndicator={false}
-      />
+      /> */}
     </Flex.Horizontal>
   );
 }
