@@ -3,6 +3,7 @@ import { FlexViewProps } from '@@components/FlexView/types';
 export interface CalendarItemProps extends FlexViewProps {
   date: number;
   scheduleList?: Schedule[];
+  isPreview?: boolean;
 }
 
 export interface CalendarLabelProps extends FlexViewProps {

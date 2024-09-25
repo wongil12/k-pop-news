@@ -15,7 +15,7 @@ function Calendar({ scheduleList, ...props }: CalendarProps) {
   const dateList = useCalendar(targetDate);
 
   return (
-    <Flex.Horizontal {...props} alignItems='stretch'>
+    <Flex.Horizontal {...props} marginTop={32} alignItems='stretch'>
       <MonthOfCalendar date={startOfMonth(new Date())} />
       {/* <FlatList
         horizontal

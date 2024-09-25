@@ -25,6 +25,7 @@ const StyledLabelTex = styled(BodySmallerText)`
 
 function CalendarLabel({ schedule }: CalendarLabelProps) {
   const { title, mainColor, subColor } = schedule;
+
   return (
     <StyledCalendarLabel>
       <StyledLabelMarker background={subColor} />

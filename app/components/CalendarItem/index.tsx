@@ -4,14 +4,18 @@ import CalendarLabel from '@@components/CalendarItem/CalendarLabel';
 import styled from 'styled-components';
 import { CalendarItemProps } from '@@components/CalendarItem/types';
 
+const StyledCalendarItem = styled(Flex.Vertical)<{ isPreview: boolean }>`
+  opacity: ${({ isPreview }) => (isPreview ? 0.5 : 1)};
+`;
+
 const StyleDateTextView = styled(Flex.Horizontal)`
   width: 32px;
   height: 32px;
 `;
 
-function CalendarItem({ scheduleList, date, ...props }: CalendarItemProps) {
+function CalendarItem({ scheduleList, date, isPreview, ...props }: CalendarItemProps) {
   return (
-    <Flex.Vertical alignItems='center' {...props}>
+    <StyledCalendarItem alignItems='center' isPreview={!!isPreview} {...props}>
       <StyleDateTextView alignItems='center' justifyContent='center'>
         <BodySmallText>{date}</BodySmallText>
       </StyleDateTextView>
@@ -20,7 +24,7 @@ function CalendarItem({ scheduleList, date, ...props }: CalendarItemProps) {
           <CalendarLabel key={index} schedule={schedule} />
         ))}
       </Flex.Vertical>
-    </Flex.Vertical>
+    </StyledCalendarItem>
   );
 }
 

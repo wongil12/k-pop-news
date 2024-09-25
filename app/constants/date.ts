@@ -8,6 +8,8 @@ export const DAY_OF_THE_WEEK = {
   SAT: 6,
 } as const;
 
+export const ALL_DAY_OF_THE_WEEK = Object.values(DAY_OF_THE_WEEK);
+
 export const DAY_BY_STRING_KO = {
   [DAY_OF_THE_WEEK.SUN]: '일',
   [DAY_OF_THE_WEEK.MON]: '월',

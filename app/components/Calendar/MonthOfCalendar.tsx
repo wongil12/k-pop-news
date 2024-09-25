@@ -4,6 +4,7 @@ import { MonthOfCalendarProps } from '@@components/Calendar/types';
 import { Dimensions } from 'react-native';
 import { add, format, lastDayOfMonth, startOfMonth } from 'date-fns';
 import CalendarItem from '@@components/CalendarItem';
+import CalendarHeader from '@@components/CalendarHeader';
 
 const VIEW_WIDTH = Dimensions.get('window').width;
 
@@ -32,11 +33,13 @@ function MonthOfCalendar({ date, ...props }: MonthOfCalendarProps) {
 
   return (
     <Flex.Vertical {...props} style={{ width: VIEW_WIDTH }} alignSelf='stretch'>
+      <CalendarHeader />
       {items.map((week, wIndex) => (
-        <Flex.Horizontal>
+        <Flex.Horizontal flex={1}>
           {week.map((date, index) => {
             const result = date === null ? lastDateOfPrevMonth + index - lastDayOfPrevMonth : date > lastDateOfMonth ? date - lastDateOfMonth : date;
-            return <CalendarItem flex={1} scheduleList={[]} date={result} />;
+            const isPreview = date === null || date > lastDateOfMonth;
+            return <CalendarItem flex={1} scheduleList={[]} date={result} isPreview={isPreview} />;
           })}
         </Flex.Horizontal>
       ))}
