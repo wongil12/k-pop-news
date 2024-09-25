@@ -1,8 +1,8 @@
-import { AppState } from '@@store/types';
 import { Middleware } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { Action } from 'redux-actions';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SubscribeCallback = (payload: any) => void;
 
 interface SubscribeAction {
@@ -35,6 +35,7 @@ const subscribeStore: SubscribeStore = {
 export const actionMiddleware: Middleware = () => (next) => (action) => {
   next(action);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { type } = action as Action<any>;
 
   subscribeStore.subscribeActions.forEach((item) => {

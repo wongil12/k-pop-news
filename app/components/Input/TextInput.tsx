@@ -54,3 +54,5 @@ export const TextInput = forwardRef(({ onBlur, onFocus, value, errorMessage, err
     </StyledTextInputBox>
   );
 });
+
+TextInput.displayName = 'TextInput';

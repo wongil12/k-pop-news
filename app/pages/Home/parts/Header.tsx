@@ -1,5 +1,5 @@
 import { Flex } from '@@components/FlexView';
-import { BodyLargeText, HeaderMediumText } from '@@components/Text';
+import { HeaderMediumText } from '@@components/Text';
 import { ASSETS } from '@@constants/assets';
 import { Image } from 'react-native';
 

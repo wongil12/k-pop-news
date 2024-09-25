@@ -1,5 +1,4 @@
 import CalendarFilter from '@@components/CalendarFilter';
-import CalendarIcon from '@@components/CalendarIcon';
 import { Flex } from '@@components/FlexView';
 import { ASSETS } from '@@constants/assets';
 import { Image, ScrollView } from 'react-native';

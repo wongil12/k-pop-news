@@ -4,12 +4,10 @@ import { TextInput } from '@@components/Input';
 import { BodyMediumText } from '@@components/Text';
 import { ASSETS } from '@@constants/assets';
 import { useKeyboardWithAnimation } from '@@hooks/keyboard';
-import { Animated, Keyboard, TextInput as RNTextInput, TouchableWithoutFeedback } from 'react-native';
+import { Animated, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import { useLoginFlow } from './hooks';
-import { useSelector } from 'react-redux';
-import { AppState } from '@@store/types';
 
 const ForgetTextView = styled(BodyMediumText)`
   color: ${ASSETS.COLORS.Neutural600};

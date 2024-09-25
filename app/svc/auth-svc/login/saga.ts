@@ -44,7 +44,7 @@ interface LoginResponse {
 
 const getEmail = (email: string): Promise<CheckValidateResponse> =>
   new Promise((res, rej) => {
-    TEST_EMAIL.includes(email) ? res({ ok: true }) : rej(new Error('등록되지 않은 이메일이에요. 다시 확인 해주세요.'));
+    return TEST_EMAIL.includes(email) ? res({ ok: true }) : rej(new Error('등록되지 않은 이메일이에요. 다시 확인 해주세요.'));
   });
 
 const dummyLogin = ({ email, password }: { email: string; password: string }): Promise<LoginResponse> =>

@@ -1,6 +1,5 @@
 import { Flex } from '@@components/FlexView';
 import { BodyMediumText } from '@@components/Text';
-import { DayOfTheWeek } from '@@types/date';
 import { CalendarHeaderItemProps } from '@@components/CalendarHeader/types';
 import { DAY_BY_STRING_KO } from '@@constants/date';
 import { ASSETS } from '@@constants/assets';
