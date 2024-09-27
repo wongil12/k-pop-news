@@ -12,11 +12,11 @@ export const useCalendar = (targetDate: Date) => {
   useEffect(() => {
     if (prevTargetDate == targetDate) return;
     const fromDate = add(targetDate, {
-      years: -2,
+      years: -1,
     });
 
     setDateList(
-      Array.from({ length: 12 * 4 }, (_, index) =>
+      Array.from({ length: 12 * 2 }, (_, index) =>
         startOfMonth(
           add(fromDate, {
             months: index,

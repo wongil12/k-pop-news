@@ -1,6 +1,3 @@
 export interface HomeState {
-  selectedDate: {
-    year: number;
-    month: number;
-  };
+  currentDate: Date;
 }
