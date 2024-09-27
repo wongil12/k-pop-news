@@ -2,7 +2,7 @@ import { usePrevious } from '@@hooks/commons';
 import { add, startOfMonth } from 'date-fns';
 import { useEffect, useState } from 'react';
 
-// Target Date 기준 앞 뒤로 5년 단위로 불러옴.
+// Target Date 기준 앞 뒤로 2년 단위로 불러옴.
 export const useCalendar = (targetDate: Date) => {
   const prevTargetDate = usePrevious(targetDate);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,11 +12,11 @@ export const useCalendar = (targetDate: Date) => {
   useEffect(() => {
     if (prevTargetDate == targetDate) return;
     const fromDate = add(targetDate, {
-      years: -5,
+      years: -2,
     });
 
     setDateList(
-      Array.from({ length: 12 * 10 }, (_, index) =>
+      Array.from({ length: 12 * 4 }, (_, index) =>
         startOfMonth(
           add(fromDate, {
             months: index,
