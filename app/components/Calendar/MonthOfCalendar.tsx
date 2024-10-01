@@ -1,13 +1,13 @@
 import { Flex } from '@@components/FlexView';
 import { MonthOfCalendarProps } from '@@components/Calendar/types';
 import { Dimensions } from 'react-native';
-import { add, lastDayOfMonth } from 'date-fns';
+import { add, format, lastDayOfMonth } from 'date-fns';
 import CalendarItem from '@@components/CalendarItem';
 import CalendarHeader from '@@components/CalendarHeader';
 
 const VIEW_WIDTH = Dimensions.get('window').width;
 
-function MonthOfCalendar({ date, ...props }: MonthOfCalendarProps) {
+function MonthOfCalendar({ date, scheduleList, ...props }: MonthOfCalendarProps) {
   const prevMonthDate = lastDayOfMonth(add(date, { months: -1 }));
   // 해당 월의 첫번째 요일 0: 월요일 ~ 6: 일요일
   const dayOfWeek = (date.getDay() === 0 ? 7 : date.getDay()) - 1;
@@ -31,11 +31,21 @@ function MonthOfCalendar({ date, ...props }: MonthOfCalendarProps) {
     <Flex.Vertical {...props} style={{ width: VIEW_WIDTH }} alignSelf='stretch'>
       <CalendarHeader />
       {items.map((week, wIndex) => (
-        <Flex.Horizontal key={wIndex} flex={1}>
+        <Flex.Horizontal gap={2} key={wIndex} flex={1}>
           {week.map((date, index) => {
             const result = date === null ? lastDateOfPrevMonth + index - lastDayOfPrevMonth : date > lastDateOfMonth ? date - lastDateOfMonth : date;
             const isPreview = date === null || date > lastDateOfMonth;
-            return <CalendarItem key={index} flex={1} scheduleList={[]} date={result} isPreview={isPreview} />;
+            return (
+              <CalendarItem
+                key={index}
+                flex={1}
+                scheduleList={scheduleList.filter(
+                  ({ toDate, fromDate }) => +(date ?? 0) === +format(toDate, 'dd') || +(date ?? 0) === +format(fromDate, 'dd')
+                )}
+                date={result}
+                isPreview={isPreview}
+              />
+            );
           })}
         </Flex.Horizontal>
       ))}

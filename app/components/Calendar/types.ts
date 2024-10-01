@@ -7,4 +7,5 @@ export interface CalendarProps extends FlexViewProps {
 
 export interface MonthOfCalendarProps extends FlexViewProps {
   date: Date;
+  scheduleList: Schedule[];
 }
