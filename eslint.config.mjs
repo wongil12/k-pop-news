@@ -25,6 +25,7 @@ export default [
     rules: {
       'no-empty-pattern': 'off',
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
 ];

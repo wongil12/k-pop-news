@@ -1,19 +1,12 @@
 import { FlexViewProps } from '@@components/FlexView/types';
+import { Schedule } from '@@svc/schedule-svc/types';
 
 export interface CalendarItemProps extends FlexViewProps {
-  date: number;
+  date: Date;
   scheduleList?: Schedule[];
   isPreview?: boolean;
 }
 
-export interface CalendarLabelProps extends FlexViewProps {
+export interface ScheduleItemProps extends FlexViewProps {
   schedule: Schedule;
-}
-
-export interface Schedule {
-  title: string;
-  mainColor: string;
-  subColor: string;
-  fromDate: Date;
-  toDate: Date;
 }

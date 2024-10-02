@@ -1,8 +1,9 @@
 import { Flex } from '@@components/FlexView';
 import { BodySmallText } from '@@components/Text';
-import CalendarLabel from '@@components/CalendarItem/CalendarLabel';
+import ScheduleItem from '@@components/CalendarItem/ScheduleItem';
 import styled from 'styled-components';
 import { CalendarItemProps } from '@@components/CalendarItem/types';
+import { format } from 'date-fns';
 
 const StyledCalendarItem = styled(Flex.Vertical)<{ isPreview: boolean }>`
   opacity: ${({ isPreview }) => (isPreview ? 0.5 : 1)};
@@ -17,11 +18,11 @@ function CalendarItem({ scheduleList, date, isPreview, ...props }: CalendarItemP
   return (
     <StyledCalendarItem alignItems='center' isPreview={!!isPreview} {...props}>
       <StyleDateTextView alignItems='center' justifyContent='center'>
-        <BodySmallText>{date}</BodySmallText>
+        <BodySmallText>{format(date, 'd')}</BodySmallText>
       </StyleDateTextView>
       <Flex.Vertical style={{ alignSelf: 'stretch' }} marginTop={4} gap={1}>
         {scheduleList?.map((schedule, index) => (
-          <CalendarLabel key={index} schedule={schedule} />
+          <ScheduleItem key={index} schedule={schedule} />
         ))}
       </Flex.Vertical>
     </StyledCalendarItem>

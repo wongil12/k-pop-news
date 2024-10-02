@@ -1,47 +1,45 @@
-import { useRef, useState } from 'react';
 import { Flex } from '@@components/FlexView';
 import { CalendarProps } from '@@components/Calendar/types';
+import CalendarItem from '@@components/CalendarItem';
+import CalendarHeader from '@@components/CalendarHeader';
 import { useCalendar } from '@@components/Calendar/hooks';
-import MonthOfCalendar from '@@components/Calendar/MonthOfCalendar';
-import SwiperFlatList from 'react-native-swiper-flatlist';
-import { SwiperFlatListRefProps } from 'react-native-swiper-flatlist/src/components/SwiperFlatList/SwiperFlatListProps';
-import { Dimensions } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { setCurrentDate } from '@@svc/schedule-svc/home/reducer';
+import { useAppState } from '@@store/hooks';
 import { format } from 'date-fns';
+import { VIEW_WIDTH } from '@@constants';
 
-const VIEW_WIDTH = Dimensions.get('window').width;
+function Calendar({ date, ...props }: CalendarProps) {
+  const month = date.getMonth() + 1;
+  const schedulesByMonth = useAppState((state) => state.scheduleSvc.schedulesByMonth);
+  const calendarItemList = useCalendar(date);
 
-function Calendar({ scheduleList, ...props }: CalendarProps) {
-  const dispatch = useDispatch();
-
-  const flatListRef = useRef<SwiperFlatListRefProps>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [targetDate, setTargetDate] = useState<Date>(new Date());
-  const dateList = useCalendar(targetDate);
-  // console.log(format(endOfDay(new Date()), 'yyyyMMdd HH:mm'));
+  const scheduleList = schedulesByMonth[`${format(date, 'yyyy-MM')}`] ?? [];
 
   return (
-    <Flex.Horizontal {...props} marginTop={32} alignItems='stretch'>
-      <SwiperFlatList
-        ref={flatListRef}
-        horizontal
-        data={dateList ?? []}
-        index={10}
-        renderItem={({ item }: { item: Date }) => (
-          <MonthOfCalendar
-            key={format(item, 'yyyyMMdd')}
-            date={item}
-            scheduleList={scheduleList.filter(({ fromDate }) => format(item, 'yyyyMM') === format(fromDate, 'yyyyMM'))}
-          />
-        )}
-        onScroll={(event) => {
-          const contentOffsetX = event.nativeEvent.contentOffset.x;
-          const index = Math.round(contentOffsetX / VIEW_WIDTH);
-          dispatch(setCurrentDate(dateList?.[index] ?? new Date()));
-        }}
-      />
-    </Flex.Horizontal>
+    <Flex.Vertical {...props} style={{ width: VIEW_WIDTH }} alignSelf='stretch'>
+      <CalendarHeader />
+      {calendarItemList.map((week, weekIndex) => (
+        <Flex.Horizontal key={weekIndex} gap={2} flex={1}>
+          {week.map((calendarItemDate) => {
+            const date = +calendarItemDate.getDate();
+            const filteredScheduleList = scheduleList.filter(({ startAt, endAt }) => {
+              const startDate = +startAt.getDate();
+              const endDate = +endAt.getDate();
+              return date >= startDate && date <= endDate;
+            });
+
+            return (
+              <CalendarItem
+                key={`${calendarItemDate.getFullYear()}${calendarItemDate.getMonth()}${calendarItemDate.getDate()}`}
+                date={calendarItemDate}
+                scheduleList={filteredScheduleList}
+                isPreview={month !== calendarItemDate.getMonth() + 1}
+                flex={1}
+              />
+            );
+          })}
+        </Flex.Horizontal>
+      ))}
+    </Flex.Vertical>
   );
 }
 
