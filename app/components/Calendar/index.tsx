@@ -4,7 +4,7 @@ import CalendarItem from '@@components/CalendarItem';
 import CalendarHeader from '@@components/CalendarHeader';
 import { useCalendar } from '@@components/Calendar/hooks';
 import { useAppState } from '@@store/hooks';
-import { format } from 'date-fns';
+import { endOfDay, format, isWithinInterval, startOfDay } from 'date-fns';
 import { VIEW_WIDTH } from '@@constants';
 
 function Calendar({ date, ...props }: CalendarProps) {
@@ -13,6 +13,7 @@ function Calendar({ date, ...props }: CalendarProps) {
   const calendarItemList = useCalendar(date);
 
   const scheduleList = schedulesByMonth[`${format(date, 'yyyy-MM')}`] ?? [];
+  console.log(scheduleList[0].startAt.getDate(), scheduleList[0].endAt.getDate());
 
   return (
     <Flex.Vertical {...props} style={{ width: VIEW_WIDTH }} alignSelf='stretch'>
@@ -20,11 +21,11 @@ function Calendar({ date, ...props }: CalendarProps) {
       {calendarItemList.map((week, weekIndex) => (
         <Flex.Horizontal key={weekIndex} gap={2} flex={1}>
           {week.map((calendarItemDate) => {
-            const date = +calendarItemDate.getDate();
             const filteredScheduleList = scheduleList.filter(({ startAt, endAt }) => {
-              const startDate = +startAt.getDate();
-              const endDate = +endAt.getDate();
-              return date >= startDate && date <= endDate;
+              return isWithinInterval(calendarItemDate, {
+                start: startOfDay(startAt),
+                end: endOfDay(endAt),
+              });
             });
 
             return (

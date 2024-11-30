@@ -7,7 +7,7 @@ import { add } from 'date-fns';
 
 const initialState: ScheduleServiceState = {
   schedulesByMonth: {
-    '2024-10': [
+    '2024-11': [
       {
         createUid: '234-234123jsdafjfiefj',
         createdAt: new Date(),
